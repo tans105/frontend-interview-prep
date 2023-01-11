@@ -1,0 +1,38 @@
+/* 
+All different ways to center the divs 
+Company - Unacademy
+*/
+
+body {
+    text-align: center;
+    font-family: monospace;
+    font-size: x-large;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ---------------1st method------------------- */
+
+.m-1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ---------------2nd method------------------- */
+
+
+.m-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------3rd method------------------- */
+
+.m-3 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

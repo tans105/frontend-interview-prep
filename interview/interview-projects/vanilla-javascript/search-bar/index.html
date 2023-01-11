@@ -1,0 +1,45 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="styles.css"/>  
+    </head>
+<body>
+    <div id="search-bars" class="search-bars">
+        <div class="search-bar on-change-bar">
+            <label>Search on change</label>
+            <input type="text" placeholder="Enter text here" onkeyup="searchTimeout(event)"/>
+        </div>
+
+        <div class="search-bar on-button-click-bar">
+            <label>Search on button click</label>
+            <input type="text" id='search-input-2' placeholder="Enter text here"/>
+            <button role="button" onclick="searchButton()">Search</button>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = () => {
+        console.log('Page loaded');
+    }
+
+    //Function to search after 1 sec
+    let timeout = null;
+    function searchTimeout(event) {
+        clearTimeout(timeout);
+        const value = event.target.value;
+        
+        timeout = setTimeout(() => {
+            console.log('Search for', value);
+        }, 1000)
+    }
+
+    function searchButton() {
+        const input = document.getElementById('search-input-2');
+
+        if(input.value ) {
+            console.log('Search for', input.value)
+        }
+    }
+
+
+</script>
+</html>
