@@ -1,13 +1,13 @@
 class ListNode {
-  constructor(val) {
+  constructor(val, next) {
     this.val = val;
-    this.next = null;
+    this.next = next;
   }
 }
 
 const printList = node => {
   const valArray = [];
-  while (node !== null) {
+  while (node) {
     valArray.push(node.val);
     node = node.next;
   }
