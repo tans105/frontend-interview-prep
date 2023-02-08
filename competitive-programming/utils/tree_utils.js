@@ -53,7 +53,7 @@ const getHeight = (root) => {
   return 1 + Math.max(getHeight(root.left), getHeight(root.right));
 }
 
-const populate = (arr) => {
+const generateTreeFromArray = (arr) => {
   if (!arr || arr.length === 0) {
     return null;
   }
@@ -104,8 +104,6 @@ const mockTree = () => {
   return root;
 }
 
-levelOrderTraversal(mockTree())
-
 module.exports = {
-  TreeNode, populate, traverse, mockTree, inOrderTraversal, getHeight, levelOrderTraversal
+  TreeNode, generateTreeFromArray, traverse, mockTree, inOrderTraversal, getHeight, levelOrderTraversal
 }
