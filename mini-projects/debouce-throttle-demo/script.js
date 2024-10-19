@@ -1,37 +1,42 @@
-window.onload = () => {
-  console.log("App Started");
-};
+const defaultText = document.getElementById("default")
+const debounceText = document.getElementById("debounce")
+const throttleText = document.getElementById("throttle")
 
-document.addEventListener(
-  "click",
-  //   debounce(() => {
-  //     console.log("You Clicked Me");
-  //   }, 2000)
-  throttle(() => {
-    console.log("You Clicked Me");
-  }, 2000)
-);
+const updateDebounceText = debounce(() => {
+  incrementCount(debounceText)
+})
+const updateThrottleText = throttle(() => {
+  incrementCount(throttleText)
+}, 1000)
 
-function debounce(fn, delay) {
-  let timeout = null;
+function debounce(cb, delay = 1000) {
+  let timeout
+
   return (...args) => {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-
-    timeout = setTimeout(fn, delay);
-  };
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      cb(...args)
+    }, delay)
+  }
 }
 
-function throttle(fn, delay) {
-  let waiting = false;
-  return (...args) => {
-    const waiting = new Date().getTime();
-    if (now - last < delay) {
-      return;
-    }
+function throttle(cb, delay = 1000) {
+  let last = 0;
 
+  return (...args) => {
+    const now = Date.now();
+    if (now - last < delay) return;
+    cb(...args);
     last = now;
-    fn(...args);
-  };
+  }
+}
+
+document.addEventListener("mousemove", e => {
+  incrementCount(defaultText)
+  updateDebounceText()
+  updateThrottleText()
+})
+
+function incrementCount(element) {
+  element.textContent = (parseInt(element.innerText) || 0) + 1
 }
