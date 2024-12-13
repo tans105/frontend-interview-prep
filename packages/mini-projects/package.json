@@ -1,5 +1,5 @@
 {
-    "name": "@my-monorepo/mini-projects",
+    "name": "@frontend-interview-prep/mini-projects",
     "version": "1.0.0",
     "scripts": {
       "lint": "eslint 'react-projects/**/*.{js,jsx,ts,tsx}' 'js-projects/**/*.{js,ts}'",
