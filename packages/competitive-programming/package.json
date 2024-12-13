@@ -1,0 +1,10 @@
+{
+  "name": "@my-monorepo/competitive-programming",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "lint:fix": "eslint 'src/**/*.{js,ts}' --fix"
+  },
+  "dependencies": {}
+}

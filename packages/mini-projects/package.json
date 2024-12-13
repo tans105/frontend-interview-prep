@@ -1,0 +1,12 @@
+{
+    "name": "@my-monorepo/mini-projects",
+    "version": "1.0.0",
+    "scripts": {
+      "lint": "eslint 'react-projects/**/*.{js,jsx,ts,tsx}' 'js-projects/**/*.{js,ts}'",
+      "lint:fix": "eslint 'react-projects/**/*.{js,jsx,ts,tsx}' 'js-projects/**/*.{js,ts}' --fix"
+    },
+    "dependencies": {
+      "react": "^18.0.0",
+      "react-dom": "^18.0.0"
+    }
+  }
