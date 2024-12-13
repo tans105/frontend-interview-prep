@@ -1,9 +1,10 @@
-const js = require('@eslint/js');
-const typescript = require('@typescript-eslint/eslint-plugin');
-const tsParser = require('@typescript-eslint/parser');
-const prettierConfig = require('eslint-config-prettier');
+import globals from 'globals';
+import js from '@eslint/js';
+import typescript from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier';
 
-module.exports = [
+export default [
   {
     files: ['**/*.{js,ts,tsx}'],
     languageOptions: {
@@ -13,14 +14,9 @@ module.exports = [
         sourceType: 'module'
       },
       globals: {
-        console: 'readonly',
-        process: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        window: 'readonly',
-        document: 'readonly',
-        fetch: 'readonly',
-
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021
       }
     },
     plugins: {
@@ -30,20 +26,10 @@ module.exports = [
       ...js.configs.recommended.rules,
       ...typescript.configs['recommended'].rules,
       'no-console': 'off',
-      '@typescript-eslint/no-this-alias': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-this-alias': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off'
     }
   },
-  {
-    // Separate configuration for environments
-    languageOptions: {
-      globals: {
-        browser: true,
-        node: true,
-        es2021: true
-      }
-    }
-  },
-  prettierConfig
+  prettier
 ];

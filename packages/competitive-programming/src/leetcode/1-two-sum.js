@@ -8,7 +8,7 @@ You may assume that each input would have exactly one solution, and you may not 
 
 You can return the answer in any order.
 
- 
+
 
 Example 1:
 
@@ -23,7 +23,7 @@ Example 3:
 
 Input: nums = [3,3], target = 6
 Output: [0,1]
- 
+
 
 Constraints:
 
@@ -31,7 +31,7 @@ Constraints:
 -109 <= nums[i] <= 109
 -109 <= target <= 109
 Only one valid answer exists.
- 
+
 
 Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 Accepted
@@ -42,15 +42,14 @@ Acceptance Rate
 
 */
 
-//Solution 1 - O(n^2)
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const twoSum = function (nums, target) {
-  if(!nums || nums.length < 2) return [];
-  const map = new Map();
-  const result = [];
+const twoSum = function (nums: number[], target: number): number[] {
+  if (!nums || nums.length < 2) return [];
+  const map: Map<number, number> = new Map();
+  const result: number[] = [];
   for (let i = 0; i < nums.length; i++) {
-    if(map.has(target - nums[i])) {
-      result[0] = map.get(target - nums[i]);
+    if (map.has(target - nums[i])) {
+      result[0] = map.get(target - nums[i])!;
       result[1] = i;
       break;
     }
@@ -61,11 +60,10 @@ const twoSum = function (nums, target) {
   return result;
 };
 
-//Solution 2 - O(n)
-const twoSum2 = function (nums, target) {
-  if(!nums || nums.length < 2) return [];
+const twoSum2 = function (nums: number[], target: number): number[] {
+  if (!nums || nums.length < 2) return [];
 
-  const result = [];
+  const result: number[] = [];
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[i] + nums[j] === target) {
@@ -79,7 +77,6 @@ const twoSum2 = function (nums, target) {
   return result;
 };
 
-//Test
 console.log(twoSum2([2, 7, 11, 15], 9));
 console.log(twoSum2([3, 2, 4], 6));
 console.log(twoSum2([3, 3], 6));
