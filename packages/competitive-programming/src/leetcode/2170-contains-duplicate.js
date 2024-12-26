@@ -40,6 +40,7 @@ Constraints:
 
  */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const containsDuplicate = (nums) => {
   const numMap = nums.reduce((acc, num) => {
     acc[num] = (acc[num] || 0) + 1;
