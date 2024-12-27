@@ -24,23 +24,28 @@ import {mockTree} from "../utils/tree_utils.js";
 
 const levelOrder = (root) => {
   const h = height(root);
+  const result = [];
 
   for (let i = 0; i < h; i++) {
-    printGivenLevel(root, i);
+    const level = []
+    printGivenLevel(root, i, level);
+    result.push(level);
   }
+
+  return result
 }
 
-const printGivenLevel = (node, currentLevel) => {
+const printGivenLevel = (node, currentLevel, levels) => {
   if (node === null) {
     return
   }
 
   if (currentLevel === 0) {
-    console.log(node.val)
+    levels.push(node.val)
   }
 
-  printGivenLevel(node.left, currentLevel - 1)
-  printGivenLevel(node.right, currentLevel - 1)
+  printGivenLevel(node.left, currentLevel - 1, levels)
+  printGivenLevel(node.right, currentLevel - 1, levels)
 }
 
 const height = (root) => {
@@ -50,4 +55,4 @@ const height = (root) => {
 }
 
 const root = mockTree();
-levelOrder(root);
+console.log(levelOrder(root));
