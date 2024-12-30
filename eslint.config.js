@@ -28,7 +28,8 @@ export default [
       'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-this-alias': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off'
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     }
   },
   prettier
