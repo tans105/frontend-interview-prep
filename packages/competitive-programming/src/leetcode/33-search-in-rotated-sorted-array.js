@@ -35,51 +35,56 @@ nums is an ascending array that is possibly rotated.
  */
 
 const search = (nums, target) => {
-  let pivot = -1;
-  let index = -1;
-  getPivot(nums, 0, nums.length - 1);
+  const pivot = getPivot(nums);
 
   if (pivot === -1) {
-    binarySearch(nums, 0, nums.length - 1)
-  } else if (nums[pivot] >= target) {
-    binarySearch(nums, pivot + 1, nums.length - 1);
+    return binarySearch(nums, target);
+  }
+
+  if (target > nums[0]) {
+    return binarySearch(nums, target, 0, pivot)
   } else {
-    binarySearch(nums, 0, pivot - 1);
+    return binarySearch(nums, target, pivot)
   }
+}
 
-  return index;
+const getPivot = (nums) => {
+  let index = -1;
+  let left = 0;
+  let right = nums.length;
 
-  function getPivot(nums, low, high) {
-    if (nums.length === 1) {
-      return;
-    }
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
 
-    const mid = Math.floor((low + high) / 2);
-
-    if (mid > 0 && nums[mid - 1] > nums[mid]) {
-      pivot = mid - 1;
-    } else if (nums[mid] > nums[high]) {
-      getPivot(nums, mid, high);
-    } else if (nums[mid] < nums[low]) {
-      getPivot(nums, low, mid);
-    }
-  }
-
-  function binarySearch(nums, low, high) {
-    if (low > high) {
-      return;
-    }
-
-    const mid = (low + high) / 2;
-
-    if (target === nums[mid]) {
-      index = mid;
-    } else if (target < nums[mid]) {
-      return binarySearch(nums, low, mid - 1, target);
+    if (mid - 1 > 0 && nums[mid] < nums[mid - 1]) {
+      return mid
+    } else if (nums[mid] < nums[0]) {
+      right = mid - 1;
     } else {
-      return binarySearch(nums, mid + 1, high, target);
+      left = mid + 1;
     }
   }
+
+  return -1;
+}
+
+const binarySearch = (nums, target, low, high) => {
+  let left = low || 0;
+  let right = high || nums.length;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) return mid;
+
+    else if (nums[mid] > target) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+
+  return -1;
 }
 
 console.log(search([4, 5, 6, 7, 0, 1, 2], 0));
